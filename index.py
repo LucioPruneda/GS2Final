@@ -29,6 +29,18 @@ class Gastos:
         # Button agrega gasto
         ttk.Button(frame, text = 'Guardar gasto').grid(row = 3, columnspan = 2, sticky = W + E)
 
+        # Tabla
+        self.tree = ttk.Treeview(height = 10, columns = 2)
+        self.tree.grid(row = 4, column = 0, columnspan = 2)
+        self.tree.heading('#0', text = 'Motivo', anchor = CENTER)
+        self.tree.heading('#1', text = 'Precio', anchor = CENTER)
+
+        
+
+
+
+
+
 if __name__ == '__main__':
     window = Tk()
     application = Gastos(window)
