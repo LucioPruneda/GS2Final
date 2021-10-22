@@ -15,14 +15,19 @@ class Gastos:
         frame = LabelFrame(self.wind, text = 'Registra un nuevo gasto')
         frame.grid(row = 0, column = 0, columnspan = 3, pady = 20)
 
-        # Label
-        Label(frame, text = 'Nombre: ').grid(row = 1, column = 0)
+        # Label motivo
+        Label(frame, text = 'Motivo: ').grid(row = 1, column = 0)
         self.name = Entry(frame)
         self.name.focus()
         self.name.grid(row = 1, column = 1)
 
+        # Label precio
+        Label(frame, text = 'Precio: ').grid(row = 2, column = 0)
+        self.price = Entry(frame)
+        self.price.grid(row = 2, column = 1)
 
-
+        # Button agrega gasto
+        ttk.Button(frame, text = 'Guardar gasto').grid(row = 3, columnspan = 2, sticky = W + E)
 
 if __name__ == '__main__':
     window = Tk()
