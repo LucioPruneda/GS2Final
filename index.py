@@ -4,7 +4,7 @@ import sqlite3
 
 class Gastos:
     
-
+    db_name = 'db.sqlite'
     def __init__(self, window):
         # Inicializacion 
         self.wind = window
@@ -35,8 +35,28 @@ class Gastos:
         self.tree.heading('#0', text = 'Motivo', anchor = CENTER)
         self.tree.heading('#1', text = 'Precio', anchor = CENTER)
 
-        
+        self.get_products()
 
+        # Ejecuta query
+    def run_query(self, query, parameters = ()):
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            result = cursor.execute(query, parameters)
+            conn.commit()
+        return result
+
+        # Trae todo
+    def get_all(self):
+        # Limpiando tabla
+        records = self.tree.get_children()
+        for element in records:
+            self.tree.delete(element)
+        # Consultando datos
+        query = 'SELECT * FROM product ORDER BY name DESC'
+        db_rows = self.run_query(query)
+        # 
+        for row in db_rows:
+            self.tree.insert('', 0, text = row[1], values = row[2])
 
 
 
